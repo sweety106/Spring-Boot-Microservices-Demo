@@ -1,0 +1,21 @@
+apiVersion: "cilium.io/v2"
+kind: CiliumNetworkPolicy
+description: "L7 policy to restrict access to specific HTTP call"
+metadata:
+  name: "producer-rule"
+spec:
+  endpointSelector:
+    matchLabels:
+      class: producer
+  ingress:
+  - fromEndpoints:
+    - matchLabels:
+        class: consumer
+    toPorts:
+    - ports:
+      - port: "2222"
+        protocol: TCP
+      rules:
+        http:
+        - method: "GET"
+          path: "/teams"
