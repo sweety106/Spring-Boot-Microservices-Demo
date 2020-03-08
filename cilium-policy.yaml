@@ -1,0 +1,23 @@
+apiVersion: "cilium.io/v2"
+kind: CiliumNetworkPolicy
+description: "L3/L4/L7 policy to restrict access to Producer APIs"
+metadata:
+  name: "service-rule"
+spec:
+  endpointSelector:
+    matchLabels:
+      class: producer
+  ingress:
+  - fromEndpoints:
+    - matchLabels:
+        class: consumer
+    toPorts:
+    - ports:
+      - port: "2222"
+        protocol: TCP
+      rules:
+        http:
+        - method: "GET"
+          path: "/profiles"
+  
+
