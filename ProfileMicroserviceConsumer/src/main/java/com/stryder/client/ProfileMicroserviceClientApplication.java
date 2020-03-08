@@ -22,8 +22,14 @@ public class ProfileMicroserviceClientApplication {
 	public RestTemplate restTemplate() {
 		return new RestTemplate();
 	}
+	
 	@Bean
 	public ProfileRepository profileRepository(){
 		return new RemoteProfileRepository(PROFILES_SERVICE_URL);
+	}
+	
+	@Bean
+	public TeamRepository teamRepository(){
+		return new RemoteTeamRepository(PROFILES_SERVICE_URL);
 	}
 }

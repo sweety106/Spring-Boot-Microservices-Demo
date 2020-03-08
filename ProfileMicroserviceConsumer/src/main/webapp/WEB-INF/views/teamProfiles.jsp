@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 
 <head>
@@ -127,12 +128,12 @@ html, body {
 
     <div class="card">
 		<div class="row">
-			<h2>Profiles List</h2>
-			<p><a href="/userProfiles">View Profiles List</a></p>
-		</div>
-		<div class="row">
-			<h2>Teams List</h2>
-			<p><a href="/teamProfiles">View Teams List</a></p>
+			<h2>Team Profiles</h2>
+			<ul>
+				<c:forEach items="${teams}" var="team">
+					<li><a href="teamDetails?id=${team.teamId}">${team.teamName}</a></li>
+				</c:forEach>
+			</ul>
 		</div>
     </div>
 
